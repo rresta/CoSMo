@@ -37,8 +37,11 @@ int main () {
     std::string tool_name_4("SeqFold");
 
     std::ifstream myfile("../data/config_file.txt");
-    if (myfile.is_open())       // reading a configuration file
+    if (!(myfile.is_open()))       // reading a configuration file
     {
+        std::cout << "Unable to open configuration file";
+        exit (EXIT_FAILURE);
+    }
 
         //////////////////////////////////////////////////////////////////////////////////////////////
         //Run the line of the configuration file
@@ -250,13 +253,16 @@ int main () {
         //Graph
         /////////////////////////////////////////////////////////////////////
 
-        //readRecord(RnaRecord & record, RnaIOContext & context, TForwardIter & iter, Ebpseq const & /*tag*/)
-        //unsigned fixID = 0;
-        //RnaStructureGraph & graph = record.fixedGraphs[fixID++]; //ebpseq_read_write.h
+    //Example:
+//    RnaStructureGraph bgraph;
+//    bgraph.specs = "The bpp structure";
+//    for (typename Size<Rna5String>::Type idx = 0u; idx < contents.records[0].seqLen; ++idx)
+//        addVertex(bgraph.inter);
+//    addEdge(bgraph.inter, 0u, 2u, 0.8);
+//    addEdge(bgraph.inter, 1u, 2u, 0.2);
+//    append(contents.records[0].bppMatrGraphs, bgraph);
 
-        myfile.close();
-    }
-    else        std::cout << "Unable to open configuration file";
+    myfile.close();
 
     clock_t end = clock();
     double time = (double) (end-start) / CLOCKS_PER_SEC * 1000.0;
